@@ -80,35 +80,80 @@ Odoo 19 introduces native AI server actions and a revamped **JSON-2 API**. By co
 
 ---
 
+## 🧊 User Journey (AI-Powered Flow)
+
+```mermaid
+graph TD
+    A["Start: Mobile App"] --> B["Describe Symptoms"]
+    A --> D["Select Specialist (Direct)"]
+    B --> C{AI Agent Triage}
+    C -->|"Suggestion"| D
+    D --> E["Real-time Booking"]
+    E --> F["Secure Video Consultation"]
+    F --> G["Receive AI-Drafted Report"]
+    G --> H["Smart Billing & Pharmacy Sync"]
+    H --> I["End: Recovery & Follow-up"]
+```
+
+---
 
 
 ## 📁 Project Structure
 
-
-
 ```text
+telemed-flow/
+├── telmed_mobile/                # Flutter mobile source code
+├── telmed_odoo/                  # Custom Odoo 19 Modules
+│   ├── telmed_flow_api/          # FastAPI Endpoint definitions
+│   ├── telmed_flow_base/         # Odoo 19 Models (Health Records, Doctors)
+│   ├── telmed_flow_portal/       # Odoo 19 Website (Patient Portal)
+│   └── ...
+├── odoo-telmed.conf              # Odoo configuration file
+└── ...
+```
 
-telemed-odoo-19/
+---
 
-├── mobile_flutter/                 # Flutter mobile source code
+## 🚀 Getting Started
 
-├── odoo_addons/                    # Custom Odoo 19 Modules
+### 📱 Mobile Development (Flutter)
 
-│   ├── telmed_flow_ai/             # Odoo 19 AI Server Actions & Prompts
+1.  **Prerequisites**: Ensure you have the [Flutter SDK](https://docs.flutter.dev/get-started/install) installed.
+2.  **Setup**:
+    ```bash
+    cd telmed_mobile
+    flutter pub get
+    ```
+3.  **Run Development**:
+    ```bash
+    flutter run
+    ```
+4.  **Build/Deploy (Android)**:
+    ```bash
+    flutter build apk --release
+    ```
 
-│   ├── telmed_flow_api/            # FastAPI Endpoint definitions
+### 🧠 Odoo Backend (Odoo 19)
 
-│   │   ├── routers/                # REST Routes (FastAPI)
+1.  **Prerequisites**: 
+    - Python 3.12+
+    - PostgreSQL 16+
+    - Odoo 19 Enterprise source code
+2.  **Environment Setup**:
+    ```bash
+    # install dependencies for custom modules
+    pip install -r telmed_odoo/requirements.txt
+    ```
+3.  **Run with Configuration**:
+    Use the provided `odoo-telmed.conf` to run the Odoo server.
+    ```bash
+    python odoo-bin -c odoo-telmed.conf
+    ```
+    *The server will be available at `http://localhost:8049` by default.*
 
-│   │   ├── schemas/                # Pydantic v2 Models
-
-│   │   └── auth.py                 # JWT & Odoo 19 API Key integration
-
-│   └── telmed_flow_base/           # Odoo 19 Models (Health Records, Doctors)
-
-│   └── telmed_flow_portal/         # Odoo 19 Website (Patient Portal)
-
-├── docker/                         # Odoo 19 & Postgres Docker environment
-
-└── scripts/                        # Migration scripts for Odoo 18 -> 19
+4.  **Database Initial Setup**:
+    If starting with a new database, use the `-i` flag to install the base modules:
+    ```bash
+    python odoo-bin -c odoo-telmed.conf -d v19_telmed_dev -i telmed_flow_base,telmed_flow_api
+    ```
 
