@@ -1,0 +1,4 @@
+- https://apps.odoo.com/apps/modules/19.0/medical_clinic
+- https://apps.odoo.com/apps/modules/19.0/basic_hms
+- https://apps.odoo.com/apps/modules/19.0/base_hospital_management
+- https://apps.odoo.com/apps/modules/18.0/hospital_management_system
