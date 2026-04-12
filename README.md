@@ -157,3 +157,17 @@ telemed-flow/
     python odoo-bin -c odoo-telmed.conf -d v19_telmed_dev -i telmed_flow_base,telmed_flow_api
     ```
 
+ ---
+ 
+ ## ⚖️ Legal & Regulatory Compliance
+ 
+ TelMedFlow is designed with strict adherence to global and regional telemedicine standards to ensure patient safety and data privacy.
+ 
+ ### 🇮🇩 Indonesia (MoH/Permenkes)
+ * **[Permenkes No. 20 of 2019](https://peraturan.bpk.go.id/Details/129082/permenkes-no-20-tahun-2019)**: The foundational regulation for telemedicine services in Indonesia.
+ * **[Law No. 27 of 2022 (UU PDP)](https://peraturan.bpk.go.id/Home/Details/229083/uu-no-27-tahun-2022)**: Indonesia's Personal Data Protection (PDP) law.
+ * **[KKI Regulation No. 74 of 2020](https://kki.go.id/index.php/view/full/1393)**: Clinical authority for doctors during pandemic/telemedicine.
+ 
+ ### 🌐 Global Standards
+ * **[HIPAA (U.S.)](https://www.cdc.gov/phlp/publications/topic/hipaa.html)**: Health Insurance Portability and Accountability Act standards for protecting patient data.
+ * **[GDPR (EU)](https://gdpr-info.eu/)**: General Data Protection Regulation for privacy and security of sensitive health category data.

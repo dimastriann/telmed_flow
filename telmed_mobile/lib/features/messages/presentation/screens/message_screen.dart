@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telmed_mobile/core/constants/colors.dart';
+import 'package:telmed_mobile/features/messages/presentation/screens/chat_detail_screen.dart';
 
 class MessageScreen extends StatelessWidget {
   const MessageScreen({super.key});
@@ -9,14 +10,17 @@ class MessageScreen extends StatelessWidget {
     return ListView.builder(
       itemCount: 5,
       itemBuilder: (context, index) {
+        final doctorName = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones'][index];
+        final imageUrl = 'https://i.pravatar.cc/150?u=doctor$index';
+        
         return ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
           leading: CircleAvatar(
             radius: 28,
-            backgroundImage: NetworkImage('https://i.pravatar.cc/150?u=doctor$index'),
+            backgroundImage: NetworkImage(imageUrl),
           ),
           title: Text(
-            'Dr. ${['Smith', 'Johnson', 'Williams', 'Brown', 'Jones'][index]}',
+            'Dr. $doctorName',
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           subtitle: const Text('You: Thank you doctor!', maxLines: 1, overflow: TextOverflow.ellipsis),
@@ -34,7 +38,15 @@ class MessageScreen extends StatelessWidget {
             ],
           ),
           onTap: () {
-            // Navigate to chat detail
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ChatDetailScreen(
+                  doctorName: 'Dr. $doctorName',
+                  imageUrl: imageUrl,
+                ),
+              ),
+            );
           },
         );
       },

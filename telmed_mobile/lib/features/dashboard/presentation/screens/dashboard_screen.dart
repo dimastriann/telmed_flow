@@ -6,6 +6,7 @@ import 'package:telmed_mobile/features/dashboard/presentation/widgets/appointmen
 import 'package:telmed_mobile/features/dashboard/presentation/widgets/vital_card.dart';
 import 'package:telmed_mobile/features/messages/presentation/screens/message_screen.dart';
 import 'package:telmed_mobile/features/appointments/presentation/screens/appointment_list_screen.dart';
+import 'package:telmed_mobile/features/appointments/presentation/screens/doctor_list_screen.dart';
 import 'package:telmed_mobile/features/profile/presentation/screens/profile_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -253,7 +254,12 @@ class DashboardContent extends StatelessWidget {
               width: double.infinity,
               height: 56,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const DoctorListScreen()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primaryGreen,
                   foregroundColor: Colors.white,

@@ -4,6 +4,9 @@ import 'package:telmed_mobile/core/constants/colors.dart';
 import 'package:telmed_mobile/core/state/auth_provider.dart';
 import 'package:telmed_mobile/features/medical_records/presentation/screens/medical_record_screen.dart';
 import 'package:telmed_mobile/features/prescriptions/presentation/screens/prescription_screen.dart';
+import 'package:telmed_mobile/features/profile/presentation/screens/personal_info_screen.dart';
+import 'package:telmed_mobile/features/profile/presentation/screens/settings_screen.dart';
+import 'package:telmed_mobile/features/profile/presentation/screens/help_center_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -36,9 +39,15 @@ class ProfileScreen extends StatelessWidget {
           _buildProfileItem(Icons.receipt_long_outlined, 'Prescriptions', () {
              Navigator.push(context, MaterialPageRoute(builder: (context) => const PrescriptionScreen()));
           }),
-          _buildProfileItem(Icons.person_outline, 'Personal Info', () {}),
-          _buildProfileItem(Icons.settings_outlined, 'Settings', () {}),
-          _buildProfileItem(Icons.help_outline, 'Help Center', () {}),
+          _buildProfileItem(Icons.person_outline, 'Personal Info', () {
+             Navigator.push(context, MaterialPageRoute(builder: (context) => const PersonalInfoScreen()));
+          }),
+          _buildProfileItem(Icons.settings_outlined, 'Settings', () {
+             Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen()));
+          }),
+          _buildProfileItem(Icons.help_outline, 'Help Center', () {
+             Navigator.push(context, MaterialPageRoute(builder: (context) => const HelpCenterScreen()));
+          }),
           const SizedBox(height: 24),
           TextButton(
             onPressed: () {

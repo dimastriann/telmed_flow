@@ -1,5 +1,5 @@
 name: telmed_mobile
-description: "A new Flutter project."
+description: "TelMedFlow Mobile Application"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -46,6 +46,20 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+  # flutter_launcher_icons: ^0.13.1
+
+# flutter_launcher_icons:
+#   android: "launcher_icon"
+#   ios: true
+#   image_path: "assets/icons/app_icon.png"
+  # adaptive_icon_background: "#1DB98F"
+  # adaptive_icon_foreground: "assets/icons/app_icon.png"
+  # web:
+  #   generate: true
+  #   image_path: "assets/icons/app_icon.png"
+  # windows:
+  #   generate: true
+  #   image_path: "assets/icons/app_icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
