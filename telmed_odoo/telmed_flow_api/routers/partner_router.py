@@ -4,7 +4,7 @@ from odoo.api import Environment
 from odoo.addons.fastapi.dependencies import odoo_env, paging
 from odoo.addons.fastapi.schemas import Paging
 from ..dependencies import get_current_partner
-from ..schemas import PartnerSchema, PartnerCreate, PartnerUpdate, CollectionResponse
+from ..schemas import PartnerSchema, PartnerCreate, PartnerUpdate, CollectionResponse, BatchUpdateItem
 
 router = APIRouter(prefix="/contacts", tags=["Contacts"], dependencies=[Depends(get_current_partner)])
 
@@ -64,4 +64,43 @@ def delete_contact(
     if not record.exists() or record.is_company:
         raise HTTPException(status_code=404, detail="Contact not found")
     record.unlink()
+    return None
+
+@router.post("/batch", response_model=List[PartnerSchema], status_code=status.HTTP_201_CREATED)
+def create_contacts_batch(
+    data: List[PartnerCreate],
+    env: Annotated[Environment, Depends(odoo_env)]
+):
+    Partner = env["res.partner"]
+    vals_list = []
+    for d in data:
+        vals = d.model_dump(exclude_unset=True)
+        vals["is_company"] = False
+        vals_list.append(vals)
+    records = Partner.create(vals_list)
+    return [PartnerSchema.model_validate(r) for r in records]
+
+@router.put("/batch", response_model=List[PartnerSchema])
+def update_contacts_batch(
+    items: List[BatchUpdateItem[PartnerUpdate]],
+    env: Annotated[Environment, Depends(odoo_env)]
+):
+    Partner = env["res.partner"]
+    results = []
+    for item in items:
+        record = Partner.browse(item.id)
+        if record.exists() and not record.is_company:
+            vals = item.data.model_dump(exclude_unset=True)
+            record.write(vals)
+            results.append(record)
+    return [PartnerSchema.model_validate(r) for r in results]
+
+@router.delete("/batch", status_code=status.HTTP_204_NO_CONTENT)
+def delete_contacts_batch(
+    ids: List[int],
+    env: Annotated[Environment, Depends(odoo_env)]
+):
+    records = env["res.partner"].browse(ids).filtered(lambda r: not r.is_company)
+    if records:
+        records.unlink()
     return None

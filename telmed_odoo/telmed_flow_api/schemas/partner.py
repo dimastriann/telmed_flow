@@ -7,7 +7,6 @@ class PartnerBase(OdooBase):
     name: str
     email: Optional[str] = None
     phone: Optional[str] = None
-    mobile: Optional[str] = None
     street: Optional[str] = None
     city: Optional[str] = None
     zip: Optional[str] = None
@@ -19,7 +18,6 @@ class PartnerCreate(BaseModel):
     name: str
     email: Optional[str] = None
     phone: Optional[str] = None
-    mobile: Optional[str] = None
     street: Optional[str] = None
     city: Optional[str] = None
     zip: Optional[str] = None
@@ -31,7 +29,6 @@ class PartnerUpdate(BaseModel):
     name: Optional[str] = None
     email: Optional[str] = None
     phone: Optional[str] = None
-    mobile: Optional[str] = None
     street: Optional[str] = None
     city: Optional[str] = None
     zip: Optional[str] = None
